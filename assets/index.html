@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<base href="/kone12.github.io/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kone Tchitchemego — Data Analyst & Data Scientist | Abidjan</title>
+<meta name="description" content="Portfolio de Kone Tchitchemego — Data Analyst, Data Scientist & Développeuse d'Applications basée à Abidjan. Projets en ML, épidémiologie, finance et analyse sensorielle."/>
+<meta name="keywords" content="Kone Tchitchemego, Data Analyst, Data Scientist, Abidjan, Côte d'Ivoire, Python, R, machine learning, statistiques, INSSEDS"/>
+<meta name="author" content="Kone Tchitchemego"/>
+<meta property="og:title" content="Kone Tchitchemego — Data Analyst & Data Scientist"/>
+<meta property="og:description" content="Portfolio de Kone Tchitchemego : projets en ML, épidémiologie, finance, analyse sensorielle. Basée à Abidjan, Côte d'Ivoire."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="actifs/ma-photo.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Kone Tchitchemego — Data Analyst & Data Scientist"/>
+<meta name="twitter:description" content="Portfolio Data Science — Abidjan, Côte d'Ivoire"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root {
+  --primary-bg:#050d1a;--secondary-bg:#030810;
+  --surface-glass:rgba(20,20,20,0.85);--surface-holo:rgba(0,180,255,0.15);
+  --gradient-neon:linear-gradient(135deg,#00b4ff 0%,#0066cc 100%);
+  --gradient-accent:linear-gradient(135deg,#00b4ff 0%,#0033aa 100%);
+  --accent-neon:#00b4ff;--accent-pink:#0066cc;--accent-purple:#0044bb;
+  --text-primary:#f0f8ff;--text-secondary:#ddeeff;--text-muted:#7ab8f5;
+  --shadow-neon:0 0 15px rgba(0,180,255,0.5);
+  --shadow-holo:0 8px 25px rgba(0,0,0,0.5);
+  --shadow-glow:0 0 30px rgba(0,180,255,0.6);
+  --border-neon:1px solid rgba(0,180,255,0.3);
+  --tf:0.3s cubic-bezier(.25,.46,.45,.94);
+  --ts:0.5s cubic-bezier(.25,.46,.45,.94);
+  --particle-color:rgba(0,180,255,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:"Times New Roman",Times,serif;background:var(--primary-bg);color:var(--text-primary);line-height:1.7;overflow-x:hidden}
+#particle-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;background:var(--primary-bg)}
+body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 80%,rgba(0,180,255,.08) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(0,102,204,.08) 0%,transparent 50%);z-index:-1;pointer-events:none}
+h1,h2,h3,h4,h5,h6{font-family:"Times New Roman",Times,serif;font-weight:600;line-height:1.3;color:var(--text-primary)}
+h1{font-size:clamp(2.2rem,4.5vw,4rem)}h2{font-size:clamp(1.8rem,3.5vw,3rem)}h3{font-size:clamp(1.4rem,2.8vw,2rem)}
+
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;background:var(--gradient-neon);transform-origin:left;transform:scaleX(0);z-index:1001}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--surface-glass);backdrop-filter:blur(12px) saturate(150%);border-bottom:var(--border-neon);transition:all var(--ts)}
+nav.scrolled{background:var(--surface-holo);box-shadow:var(--shadow-holo)}
+.nav-container{max-width:1400px;margin:0 auto;padding:.7rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap}
+.logo{font-size:1.6rem;font-weight:700;background:var(--gradient-neon);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:.5rem}
+.logo::before{content:"K";font-size:1.8rem;-webkit-text-fill-color:initial;color:#00b4ff}
+.nav-menu{display:flex;list-style:none;gap:.3rem;align-items:center;flex-wrap:nowrap}
+.nav-link{color:var(--text-secondary);text-decoration:none;font-weight:500;font-size:.82rem;padding:.5rem .7rem;white-space:nowrap;border-radius:25px;position:relative;transition:all var(--tf);cursor:pointer}
+.nav-link::before{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--gradient-neon);transform:scaleX(0);transform-origin:right;transition:transform var(--ts);border-radius:1px}
+.nav-link:hover,.nav-link.active{color:var(--text-primary);background:rgba(0,180,255,.1);transform:translateY(-2px)}
+.nav-link:hover::before,.nav-link.active::before{transform:scaleX(1);transform-origin:left}
+.theme-toggle-btn{background:none;border:none;color:var(--text-primary);font-size:1.4rem;cursor:pointer;padding:.6rem;border-radius:50%;transition:all var(--tf);margin-right:1rem}
+.theme-toggle-btn:hover{background:rgba(0,180,255,.15);transform:rotate(15deg) scale(1.1)}
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text-primary);font-size:1.6rem;cursor:pointer;padding:.6rem;border-radius:50%;transition:all var(--tf)}
+.mobile-menu-btn:hover{background:rgba(0,180,255,.15)}
+.mobile-menu-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);z-index:200;opacity:0;visibility:hidden;transition:all var(--ts);transform:translateX(-100%)}
+.mobile-menu-overlay.show{opacity:1;visibility:visible;transform:translateX(0)}
+.mobile-menu-content{position:absolute;top:0;left:0;width:80%;max-width:400px;height:100%;background:var(--surface-holo);border-right:var(--border-neon);padding:3rem;box-shadow:0 0 30px rgba(0,180,255,.2)}
+.mobile-nav-link{display:block;color:var(--text-secondary);text-decoration:none;padding:1rem;margin-bottom:.5rem;border-radius:12px;font-weight:500;transition:all var(--ts)}
+.mobile-nav-link:hover,.mobile-nav-link.active{background:var(--gradient-neon);color:white;transform:translateX(5px)}
+
+.page{min-height:100vh;padding-top:80px;display:none;animation:fadeInPage .6s ease-in-out}
+.page.active{display:block}
+@keyframes fadeInPage{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+.section{padding:4rem 2rem;max-width:1400px;margin:0 auto;position:relative}
+.section-title{text-align:center;margin-bottom:3rem;position:relative;color:var(--accent-neon)}
+.section-title::after{content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:3px;background:var(--gradient-neon);border-radius:2px}
+
+.hero{min-height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:2rem 0}
+.hero-content{max-width:1200px;margin:0 auto;padding:2rem;z-index:2;position:relative;display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center}
+.hero-image-container{display:flex;justify-content:center;align-items:center}
+.hero-image{width:280px;height:280px;border-radius:50%;position:relative;overflow:hidden;box-shadow:var(--shadow-glow);animation:gentleFloat 4s ease-in-out infinite}
+.hero-image::before{content:"";position:absolute;top:-6px;left:-6px;right:-6px;bottom:-6px;background:var(--gradient-neon);border-radius:50%;z-index:-1;animation:pulseBorder 8s linear infinite;filter:blur(2px)}
+.hero-image::after{content:"";position:absolute;top:-3px;left:-3px;right:-3px;bottom:-3px;background:var(--gradient-accent);border-radius:50%;z-index:-1;animation:pulseBorder 6s linear infinite reverse;opacity:.6;filter:blur(1px)}
+@keyframes pulseBorder{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(0deg) scale(1.05)}}
+@keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-image img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid var(--accent-neon)}
+.hero-image-placeholder{width:100%;height:100%;border-radius:50%;background:var(--gradient-accent);display:flex;align-items:center;justify-content:center;font-size:5rem;color:white}
+.hero-text{text-align:left}
+.hero-title{margin-bottom:1rem;background:var(--gradient-neon);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gentleGlow 3s ease-in-out infinite alternate}
+.hero-subtitle{font-size:1.4rem;color:var(--text-secondary);margin-bottom:2rem;font-weight:400;font-style:italic}
+@keyframes gentleGlow{0%{filter:brightness(1)}100%{filter:brightness(1.2)}}
+.hero-quote{font-style:italic;color:var(--text-secondary);margin-bottom:2rem;padding-left:1.5rem;border-left:3px solid var(--accent-neon);font-size:1.1rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;border:none;border-radius:30px;font-family:"Times New Roman",Times,serif;font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;position:relative;overflow:hidden;transition:all var(--ts);z-index:1}
+.btn-primary{background:var(--gradient-neon);color:white;box-shadow:var(--shadow-neon)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,180,255,.4)}
+.btn-secondary{background:transparent;color:var(--accent-neon);border:2px solid var(--accent-neon)}
+.btn-secondary:hover{background:var(--accent-neon);color:white;transform:translateY(-2px)}
+
+.carousel-container{position:relative;max-width:100%;margin:2rem auto;overflow:hidden;border-radius:20px;background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);box-shadow:var(--shadow-holo)}
+.carousel-wrapper{display:flex;transition:transform .5s cubic-bezier(.25,.46,.45,.94);gap:2rem;padding:2rem}
+.carousel-item{flex:0 0 350px;background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:all var(--ts);cursor:pointer;box-shadow:var(--shadow-holo);min-height:400px;display:flex;flex-direction:column}
+.carousel-item::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg,transparent,rgba(0,180,255,.08),transparent);transform:translateX(-100%);transition:transform .8s;z-index:-1}
+.carousel-item:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 40px rgba(0,180,255,.2);border-color:var(--accent-neon)}
+.carousel-item:hover::before{transform:translateX(100%)}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);background:var(--surface-holo);backdrop-filter:blur(10px);border:var(--border-neon);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tf);z-index:10;color:var(--text-primary);font-size:1.2rem}
+.carousel-nav:hover{background:var(--accent-neon);color:white;transform:translateY(-50%) scale(1.1);box-shadow:var(--shadow-glow)}
+.carousel-nav.prev{left:1rem}.carousel-nav.next{right:1rem}
+.carousel-nav:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
+.carousel-indicators{display:flex;justify-content:center;gap:.5rem;padding:1rem;background:var(--surface-glass);backdrop-filter:blur(10px)}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:var(--text-muted);cursor:pointer;transition:all var(--tf)}
+.carousel-dot.active{background:var(--accent-neon);transform:scale(1.2)}
+.carousel-item-content{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.carousel-item-title{font-size:1.3rem;margin-bottom:1rem;color:var(--text-primary)}
+.carousel-item-link{color:var(--accent-neon);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all var(--tf);margin-top:auto}
+.carousel-item-link:hover{transform:translateX(5px);color:var(--accent-purple)}
+.carousel-item-provider{color:var(--text-secondary);font-size:1rem;margin-top:.5rem;font-style:italic}
+
+.project-card{background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:all var(--ts);cursor:pointer;box-shadow:var(--shadow-holo)}
+.project-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 12px 40px rgba(0,180,255,.2);border-color:var(--accent-neon)}
+.project-icon{font-size:2.5rem;margin-bottom:1rem;background:var(--gradient-neon);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.project-title{font-size:1.5rem;margin-bottom:1rem;color:var(--text-primary)}
+.project-description{color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.6}
+.project-link{color:var(--accent-neon);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all var(--tf)}
+.project-link:hover{transform:translateX(5px);color:var(--accent-purple)}
+
+.filter-container{display:flex;justify-content:center;gap:1rem;margin-bottom:3rem;flex-wrap:wrap}
+.filter-btn{padding:.8rem 1.6rem;border:2px solid var(--accent-neon);background:transparent;color:var(--text-secondary);border-radius:30px;font-family:"Times New Roman",Times,serif;font-weight:500;cursor:pointer;transition:all var(--ts)}
+.filter-btn:hover,.filter-btn.active{color:white;background:var(--gradient-neon);border-color:transparent}
+
+.skill-card{background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:20px;padding:2rem;text-align:center;transition:all var(--ts);box-shadow:var(--shadow-holo)}
+.skill-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,180,255,.2)}
+.skill-icon{font-size:2.8rem;margin-bottom:1rem;background:var(--gradient-neon);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.contact-card{background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:20px;padding:2rem;text-align:center;transition:all var(--ts);position:relative;overflow:hidden;box-shadow:var(--shadow-holo)}
+.contact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-accent)}
+.contact-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,102,204,.2)}
+.contact-icon{font-size:2.5rem;margin-bottom:1rem;background:var(--gradient-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.cv-container{background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:25px;padding:3rem;margin:2rem auto;max-width:1000px;position:relative;box-shadow:var(--shadow-holo);line-height:1.7}
+.cv-header{display:grid;grid-template-columns:200px 1fr;gap:2rem;margin-bottom:3rem;position:relative;z-index:1}
+.cv-photo img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid var(--accent-neon);box-shadow:var(--shadow-glow)}
+.cv-photo-placeholder{width:180px;height:180px;border-radius:50%;background:var(--gradient-accent);display:flex;align-items:center;justify-content:center;font-size:3.5rem;border:3px solid var(--accent-neon);box-shadow:var(--shadow-glow);margin:0 auto}
+.cv-info h1{font-size:2rem;margin-bottom:.5rem;background:var(--gradient-neon);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cv-info h2{font-size:1.3rem;color:var(--text-secondary);margin-bottom:1.5rem;font-weight:400;font-style:italic}
+.contact-info p,.contact-info a{margin:.3rem 0;color:var(--text-secondary);text-decoration:none}
+.contact-info a:hover{color:var(--accent-neon)}
+.cv-section{margin-bottom:2.5rem;position:relative;z-index:1}
+.cv-section h3{font-size:1.4rem;margin-bottom:1.5rem;color:var(--text-primary);border-left:4px solid var(--accent-neon);padding-left:1rem}
+.job,.education,.project-cv{background:var(--surface-glass);border-radius:15px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid rgba(0,180,255,.3);transition:all var(--ts);box-shadow:var(--shadow-holo)}
+.job:hover,.education:hover,.project-cv:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 8px 25px rgba(0,180,255,.15);border-color:var(--accent-neon)}
+.job-header,.edu-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.job-header h4,.edu-header h4{font-size:1.1rem;color:var(--accent-neon)}
+.period{background:var(--gradient-accent);color:white;padding:.3rem .8rem;border-radius:20px;font-size:.85rem;font-weight:500}
+.company,.school{font-weight:600;color:var(--text-secondary);margin-bottom:.8rem}
+.cv-section ul{list-style:none;padding-left:1rem}
+.cv-section ul li{position:relative;margin-bottom:.5rem;padding-left:1.5rem}
+.cv-section ul li::before{content:"›";position:absolute;left:0;color:#00b4ff}
+.skills-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.skill-category{background:var(--surface-glass);border-radius:15px;padding:1.5rem;border:1px solid rgba(0,180,255,.3);transition:all var(--ts);position:relative;overflow:hidden;box-shadow:var(--shadow-holo)}
+.skill-category::before{content:"";position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--gradient-neon);transition:width var(--ts);border-radius:2px}
+.skill-category:hover::before{width:100%}
+.skill-category:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,180,255,.15)}
+.skill-category h5{color:var(--accent-purple);margin-bottom:.8rem;font-size:1.05rem}
+.lang-item{background:var(--surface-glass);border-radius:12px;padding:1rem;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(0,180,255,.3);transition:all var(--ts);box-shadow:var(--shadow-holo);margin-bottom:.8rem}
+.lang-item:hover{transform:scale(1.02)}
+
+/* ── CHAT IA ── */
+.chat-container{max-width:800px;margin:0 auto;background:var(--surface-glass);backdrop-filter:blur(15px);border:var(--border-neon);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-holo);display:flex;flex-direction:column;height:70vh}
+.chat-header{padding:1.2rem 1.8rem;background:linear-gradient(135deg,rgba(0,180,255,0.2),rgba(0,102,204,0.1));border-bottom:var(--border-neon);display:flex;align-items:center;gap:1rem}
+.chat-header-dot{width:10px;height:10px;border-radius:50%;background:#00ff88;box-shadow:0 0 8px #00ff88;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.chat-header h3{font-size:1.1rem;color:var(--accent-neon);margin:0}
+.chat-header p{font-size:.75rem;color:var(--text-muted);margin:0}
+.chat-messages{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;scrollbar-width:thin;scrollbar-color:rgba(0,180,255,0.3) transparent}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(0,180,255,0.3);border-radius:2px}
+.msg{display:flex;gap:.8rem;animation:msgIn .3s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.msg.user{flex-direction:row-reverse}
+.msg-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700}
+.msg.bot .msg-avatar{background:linear-gradient(135deg,#00b4ff,#0066cc);color:white}
+.msg.user .msg-avatar{background:linear-gradient(135deg,#0066cc,#0033aa);color:white}
+.msg-bubble{max-width:75%;padding:.9rem 1.2rem;border-radius:18px;font-size:.92rem;line-height:1.6}
+.msg.bot .msg-bubble{background:rgba(0,180,255,0.08);border:1px solid rgba(0,180,255,0.2);color:var(--text-secondary);border-radius:4px 18px 18px 18px}
+.msg.user .msg-bubble{background:linear-gradient(135deg,rgba(0,180,255,0.25),rgba(0,102,204,0.2));border:1px solid rgba(0,180,255,0.3);color:var(--text-primary);border-radius:18px 4px 18px 18px}
+.typing-indicator{display:flex;gap:4px;padding:.5rem 0}
+.typing-indicator span{width:7px;height:7px;border-radius:50%;background:var(--accent-neon);opacity:.4;animation:typing 1.2s ease-in-out infinite}
+.typing-indicator span:nth-child(2){animation-delay:.2s}
+.typing-indicator span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(-5px)}}
+.chat-input-area{padding:1rem 1.5rem;border-top:var(--border-neon);display:flex;gap:.8rem;align-items:flex-end;background:rgba(0,0,0,0.2)}
+.chat-input{flex:1;background:rgba(0,180,255,0.06);border:1px solid rgba(0,180,255,0.25);border-radius:20px;padding:.8rem 1.2rem;color:var(--text-primary);font-family:"Times New Roman",Times,serif;font-size:.95rem;resize:none;outline:none;max-height:120px;transition:border-color .2s}
+.chat-input:focus{border-color:var(--accent-neon)}
+.chat-input::placeholder{color:var(--text-muted)}
+.chat-send-btn{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#00b4ff,#0066cc);border:none;color:white;font-size:1.1rem;cursor:pointer;transition:all .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,180,255,0.4)}
+.chat-send-btn:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,180,255,0.6)}
+.chat-send-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 1.5rem 1rem}
+.suggestion-btn{font-family:"Times New Roman",Times,serif;font-size:.75rem;padding:.4rem .9rem;border:1px solid rgba(0,180,255,0.25);border-radius:20px;background:rgba(0,180,255,0.06);color:var(--text-muted);cursor:pointer;transition:all .2s}
+.suggestion-btn:hover{border-color:var(--accent-neon);color:var(--accent-neon);background:rgba(0,180,255,0.12)}
+
+/* ── THEME SWITCHER ── */
+.theme-switcher{position:relative}
+.theme-btn{background:none;border:1px solid var(--border-neon);color:var(--text-primary);font-size:.85rem;cursor:pointer;padding:.5rem 1rem;border-radius:20px;transition:all var(--tf);display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.theme-btn:hover{background:rgba(0,180,255,.1);border-color:var(--accent-neon)}
+.theme-panel{position:absolute;top:calc(100% + 10px);right:0;background:rgba(10,10,20,.97);backdrop-filter:blur(20px);border:1px solid var(--border-neon);border-radius:16px;padding:1rem;min-width:220px;display:none;z-index:500;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.theme-panel.open{display:block}
+.theme-panel-title{font-family:"Times New Roman",serif;font-size:.72rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.theme-options{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.theme-option{padding:.6rem .8rem;border-radius:10px;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .2s;font-family:"Times New Roman",serif;font-size:.78rem;display:flex;align-items:center;gap:.5rem;color:var(--text-secondary)}
+.theme-option:hover{transform:translateY(-2px);border-color:var(--accent-neon)}
+.theme-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+
+footer{background:var(--secondary-bg);padding:3rem 2rem 2rem;text-align:center;border-top:var(--border-neon);position:relative}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade-in{animation:fadeInUp .6s ease-out forwards}
+
+@media(max-width:1024px){.hero-content{grid-template-columns:1fr;text-align:center;gap:2rem}.hero-text{text-align:center}.carousel-item{flex:0 0 300px}}
+@media(max-width:768px){.nav-menu{display:none}.mobile-menu-btn{display:block}.hero-image{width:220px;height:220px}.section{padding:3rem 1rem}.cv-header{grid-template-columns:1fr;text-align:center;gap:1rem}.job-header,.edu-header{flex-direction:column;align-items:flex-start;gap:.5rem}.skills-section{grid-template-columns:1fr}.carousel-item{flex:0 0 280px}}
+@media(max-width:480px){.hero-image{width:180px;height:180px}.cv-container{padding:2rem;margin:1rem}.hero-subtitle{font-size:1.1rem}.hero-buttons{flex-direction:column;gap:1rem}.carousel-item{flex:0 0 250px}}
+
+/* ── FLOATING CHAT ── */
+#floatChatBtn{position:fixed;bottom:28px;right:28px;z-index:999;width:60px;height:60px;border-radius:50%;background:var(--gradient-neon);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,180,255,0.5);display:flex;align-items:center;justify-content:center;font-size:1.6rem;transition:all .3s;animation:floatPulse 2.5s ease-in-out infinite}
+#floatChatBtn:hover{transform:scale(1.12);box-shadow:0 6px 30px rgba(0,180,255,0.7)}
+@keyframes floatPulse{0%,100%{box-shadow:0 4px 20px rgba(0,180,255,0.5)}50%{box-shadow:0 4px 35px rgba(0,180,255,0.85)}}
+#floatChatOverlay{position:fixed;bottom:100px;right:28px;z-index:998;width:380px;max-width:calc(100vw - 40px);background:var(--surface-glass);backdrop-filter:blur(20px);border:var(--border-neon);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.6);display:none;flex-direction:column;height:500px;animation:slideUp .3s ease}
+#floatChatOverlay.open{display:flex}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fchat-header{padding:.9rem 1.2rem;background:linear-gradient(135deg,rgba(0,180,255,0.25),rgba(0,102,204,0.15));border-bottom:var(--border-neon);display:flex;align-items:center;justify-content:space-between}
+.fchat-header-left{display:flex;align-items:center;gap:.6rem}
+.fchat-dot{width:8px;height:8px;border-radius:50%;background:#00ff88;box-shadow:0 0 6px #00ff88;animation:blink 1.5s ease-in-out infinite}
+.fchat-header h3{font-size:.95rem;color:var(--accent-neon);margin:0}
+.fchat-header p{font-size:.7rem;color:var(--text-muted);margin:0}
+.fchat-close{background:none;border:none;color:var(--text-muted);font-size:1.1rem;cursor:pointer;padding:.2rem .4rem;border-radius:6px;transition:all .2s}
+.fchat-close:hover{color:var(--text-primary);background:rgba(255,255,255,.1)}
+.fchat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.8rem;scrollbar-width:thin;scrollbar-color:rgba(0,180,255,0.3) transparent}
+.fchat-messages::-webkit-scrollbar{width:3px}
+.fchat-messages::-webkit-scrollbar-thumb{background:rgba(0,180,255,0.3);border-radius:2px}
+.fchat-msg{display:flex;gap:.6rem;align-items:flex-start;animation:msgIn .25s ease}
+.fchat-msg.user{flex-direction:row-reverse}
+.fchat-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700}
+.fchat-msg.bot .fchat-av{background:linear-gradient(135deg,#00b4ff,#0066cc);color:white}
+.fchat-msg.user .fchat-av{background:linear-gradient(135deg,#0066cc,#0033aa);color:white}
+.fchat-bubble{max-width:80%;padding:.6rem .9rem;border-radius:14px;font-size:.83rem;line-height:1.55}
+.fchat-msg.bot .fchat-bubble{background:rgba(0,180,255,0.08);border:1px solid rgba(0,180,255,0.2);color:var(--text-secondary);border-radius:3px 14px 14px 14px}
+.fchat-msg.user .fchat-bubble{background:linear-gradient(135deg,rgba(0,180,255,0.25),rgba(0,102,204,0.2));border:1px solid rgba(0,180,255,0.3);color:var(--text-primary);border-radius:14px 3px 14px 14px}
+.fchat-typing{display:flex;gap:3px;padding:.3rem 0}
+.fchat-typing span{width:6px;height:6px;border-radius:50%;background:var(--accent-neon);opacity:.4;animation:typing 1.2s ease-in-out infinite}
+.fchat-typing span:nth-child(2){animation-delay:.2s}
+.fchat-typing span:nth-child(3){animation-delay:.4s}
+.fchat-suggestions{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 .8rem .6rem}
+.fchat-sug{font-family:"Times New Roman",serif;font-size:.72rem;padding:.3rem .7rem;border:1px solid rgba(0,180,255,0.25);border-radius:15px;background:rgba(0,180,255,0.06);color:var(--text-muted);cursor:pointer;transition:all .2s}
+.fchat-sug:hover{border-color:var(--accent-neon);color:var(--accent-neon)}
+.fchat-input-area{padding:.7rem 1rem;border-top:var(--border-neon);display:flex;gap:.6rem;align-items:flex-end;background:rgba(0,0,0,0.2)}
+.fchat-input{flex:1;background:rgba(0,180,255,0.06);border:1px solid rgba(0,180,255,0.25);border-radius:16px;padding:.55rem .9rem;color:var(--text-primary);font-family:"Times New Roman",serif;font-size:.88rem;resize:none;outline:none;max-height:80px;transition:border-color .2s}
+.fchat-input:focus{border-color:var(--accent-neon)}
+.fchat-input::placeholder{color:var(--text-muted)}
+.fchat-send{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00b4ff,#0066cc);border:none;color:white;font-size:.95rem;cursor:pointer;transition:all .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,180,255,0.4)}
+.fchat-send:hover{transform:scale(1.1)}
+.fchat-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
+@media(max-width:480px){#floatChatOverlay{right:10px;bottom:90px;width:calc(100vw - 20px)}#floatChatBtn{bottom:18px;right:18px;width:52px;height:52px;font-size:1.4rem}}
+
+/* ── SCROLL TO TOP ── */
+#scrollTopBtn{position:fixed;bottom:100px;right:28px;z-index:997;width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,0.6);border:1px solid rgba(0,180,255,0.4);color:var(--accent-neon);font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(10px)}
+#scrollTopBtn.show{display:flex}
+#scrollTopBtn:hover{background:var(--accent-neon);color:white;transform:translateY(-3px)}
+
+
+
+/* ── RADAR CHART ── */
+.radar-wrap{display:flex;justify-content:center;align-items:center;padding:2rem 0}
+#radarCanvas{width:100%;max-width:420px;cursor:crosshair}
+.radar-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 1.2rem;margin-top:1rem;max-width:420px;margin-left:auto;margin-right:auto}
+.radar-legend-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text-secondary)}
+.radar-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;max-width:800px;margin:0 auto;padding:2rem 0}
+.timeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--gradient-neon);transform:translateX(-50%)}
+.tl-item{display:flex;justify-content:flex-end;padding-right:calc(50% + 2rem);margin-bottom:2rem;position:relative}
+.tl-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:calc(50% + 2rem)}
+.tl-dot{position:absolute;left:50%;top:1rem;width:14px;height:14px;border-radius:50%;background:var(--accent-neon);border:3px solid var(--primary-bg);box-shadow:var(--shadow-neon);transform:translateX(-50%);z-index:2}
+.tl-card{background:var(--surface-glass);border:var(--border-neon);border-radius:14px;padding:1.2rem 1.5rem;backdrop-filter:blur(10px);max-width:320px;transition:all .3s;box-shadow:var(--shadow-holo)}
+.tl-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,180,255,.2);border-color:var(--accent-neon)}
+.tl-date{font-size:.78rem;color:var(--accent-neon);font-weight:600;margin-bottom:.4rem}
+.tl-title{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:.3rem}
+.tl-sub{font-size:.85rem;color:var(--text-secondary)}
+@media(max-width:700px){
+  .timeline::before{left:20px}
+  .tl-item,.tl-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:50px}
+  .tl-dot{left:20px}
+  .tl-card{max-width:100%}
+}
+
+/* ── RADAR MODE BADGE ── */
+.mode-toggle{display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.mode-btn{padding:.6rem 1.4rem;border-radius:25px;border:2px solid var(--accent-neon);background:transparent;color:var(--text-secondary);font-family:"Times New Roman",serif;font-size:.9rem;cursor:pointer;transition:all .3s}
+.mode-btn.active{background:var(--gradient-neon);color:white;border-color:transparent}
+
+/* ── CAROUSEL MOBILE FIX ── */
+.carousel-wrapper{display:flex;transition:transform .5s cubic-bezier(.25,.46,.45,.94);gap:1.5rem;padding:1.5rem}
+@media(max-width:600px){
+  .carousel-item{flex:0 0 calc(100vw - 80px) !important}
+}
+
+/* ── IMAGE LOADING SKELETON ── */
+.img-skeleton{background:linear-gradient(90deg,rgba(0,180,255,.05) 25%,rgba(0,180,255,.15) 50%,rgba(0,180,255,.05) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── PRINT STYLES ── */
+@media print{
+  nav,#floatChatBtn,#floatChatOverlay,#scrollTopBtn,#particle-bg,footer,.btn,canvas{display:none!important}
+  body{background:white!important;color:#111!important}
+  .cv-container{box-shadow:none!important;border:none!important;background:white!important}
+  .page{display:block!important}
+  #home,#projects,#visualisation,#certifications,#about,#contact{display:none!important}
+  #cv{display:block!important;padding-top:0!important}
+  .cv-info h1,.cv-section h3,.job-header h4,.edu-header h4{color:#111!important;-webkit-text-fill-color:#111!important;background:none!important}
+  .cv-info h2,.company,.school,p,li{color:#333!important}
+  .period{background:#0066cc!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ── CHAT SUGGESTIONS PERSISTANTES ── */
+.fchat-suggestions-wrap{padding:0 .8rem .6rem;border-top:1px solid rgba(0,180,255,.1);margin-top:.5rem}
+.fchat-sug-title{font-size:.68rem;color:var(--text-muted);margin-bottom:.4rem;display:block}
+
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<canvas id="particle-bg"></canvas>
+
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="logo">KONE TCHITCHEMEGO</div>
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link active" data-page="home">Accueil</a></li>
+      <li><a href="#" class="nav-link" data-page="projects">Projets</a></li>
+      <li><a href="#" class="nav-link" data-page="visualisation">Visualisation</a></li>
+      <li><a href="#" class="nav-link" data-page="certifications">Parcours</a></li>
+      <li><a href="#" class="nav-link" data-page="about">À propos</a></li>
+      <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+      <li><a href="#" class="nav-link" data-page="cv">CV</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <div class="theme-switcher" id="themeSwitcher">
+        <button class="theme-btn" onclick="toggleThemePanel()">🎨 Thème</button>
+        <div class="theme-panel" id="themePanel">
+          <div class="theme-panel-title">✨ Choisir un thème</div>
+          <div class="theme-options">
+            <div class="theme-option" onclick="applyTheme('blue')"><span class="theme-dot" style="background:#00b4ff"></span>Bleu Élec.</div>
+            <div class="theme-option" onclick="applyTheme('rose')"><span class="theme-dot" style="background:#e91e8c"></span>Rose/Fuchsia</div>
+            <div class="theme-option" onclick="applyTheme('green')"><span class="theme-dot" style="background:#00ff88"></span>Cyber Vert</div>
+            <div class="theme-option" onclick="applyTheme('violet')"><span class="theme-dot" style="background:#bf5af2"></span>Violet Aurora</div>
+            <div class="theme-option" onclick="applyTheme('gold')"><span class="theme-dot" style="background:#f4c842"></span>Or/Luxury</div>
+            <div class="theme-option" onclick="applyTheme('light')"><span class="theme-dot" style="background:#f0f0f0;border:1px solid #ccc"></span>Clair</div>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu-content">
+    <a href="#" class="mobile-nav-link" data-page="home">🏠 Accueil</a>
+    <a href="#" class="mobile-nav-link" data-page="projects">💼 Projets</a>
+    <a href="#" class="mobile-nav-link" data-page="visualisation">📊 Visualisation</a>
+    <a href="#" class="mobile-nav-link" data-page="certifications">🗓 Parcours</a>
+    <a href="#" class="mobile-nav-link" data-page="about">👤 À propos</a>
+    <a href="#" class="mobile-nav-link" data-page="contact">📞 Contact</a>
+    <a href="#" class="mobile-nav-link" data-page="cv">📄 CV</a>
+  </div>
+</div>
+
+<!-- ACCUEIL -->
+<div id="home" class="page active">
+  <section class="hero">
+    <div class="hero-content animate-fade-in">
+      <div class="hero-image-container">
+        <div class="hero-image">
+          <img src="actifs/ma-photo.png" onerror="this.onerror=null;this.src='https://misskone67-jpg.github.io/kone12.github.io/actifs/ma-photo.png'" alt="Kone Tchitchemego" onerror="this.style.display='none';this.parentNode.innerHTML='<div class=hero-image-placeholder>👩🏾</div>'"/>
+        </div>
+      </div>
+      <div class="hero-text">
+        <h1 class="hero-title">KONE TCHITCHEMEGO</h1>
+        <p class="hero-subtitle">Data Analyst · Data Scientist · Dev d'Applications</p>
+        <div id="hero-typed" style="font-family:'Times New Roman',serif;font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.5rem;padding-left:1.5rem;border-left:3px solid var(--accent-neon);min-height:3.5rem"></div>
+        <div class="hero-buttons" style="display:flex;gap:1rem;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="showPage('projects')"><i class="fas fa-chart-line"></i> Découvrir mes projets</button>
+          <button class="btn btn-secondary" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Me contacter</button>
+        </div>
+      </div>
+    </div>
+</div>
+  </section>
+</div>
+
+<!-- PROJETS -->
+<div id="projects" class="page">
+  <section class="section">
+    <h2 class="section-title">Mes Projets</h2>
+    <div class="filter-container">
+      <button class="filter-btn active" data-type="all">🌸 Tous</button>
+      <button class="filter-btn" data-type="pdf">📚 Rapports PDF</button>
+      <button class="filter-btn" data-type="app">🚀 Applications</button>
+      <button class="filter-btn" data-type="other">⚡ Autres</button>
+    </div>
+    <div class="carousel-container" id="projectsCarousel">
+      <button class="carousel-nav prev" id="projectsPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-nav next" id="projectsNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="carousel-wrapper" id="projectsWrapper">
+        <div class="carousel-item project-card" data-type="pdf">
+          <div class="carousel-item-content">
+            <div class="project-icon">🛍️</div>
+            <h3 class="carousel-item-title">Segmentation clients — Centre commercial</h3>
+            <p class="project-description">Analyse multidimensionnelle (ACP, ACM, CAH, K-means) sur 200 clients. 4 segments identifiés. Tests ANOVA, Chi-2 (Cramér V=0,87). Recommandations marketing ciblées.</p>
+            <a href="projets/ pdf/multivariée.pdf" target="_blank" class="carousel-item-link">Consulter le rapport <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        <div class="carousel-item project-card" data-type="pdf">
+          <div class="carousel-item-content">
+            <div class="project-icon">🎗️</div>
+            <h3 class="carousel-item-title">Cancer du sein — Modélisation du risque</h3>
+            <p class="project-description">Étude transversale sur 250 femmes à Abidjan. Régression logistique multivariée + bootstrap (1 000 itérations). AUC = 0,728. Facteurs de risque identifiés (OR : 1,73 à 3,48).</p>
+            <a href="projets/ pdf/cancer.pdf" target="_blank" class="carousel-item-link">Voir l'analyse <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        <div class="carousel-item project-card" data-type="pdf">
+          <div class="carousel-item-content">
+            <div class="project-icon">🥛</div>
+            <h3 class="carousel-item-title">Analyse sensorielle — 3 laits en poudre</h3>
+            <p class="project-description">Test en aveugle sur 120 consommateurs, 12 attributs. Friedman, Wilcoxon-Bonferroni, Spearman. K-means (3 clusters), ACP. Recommandations stratégiques.</p>
+            <a href="projets/ pdf/lait.pdf" target="_blank" class="carousel-item-link">Découvrir l'étude <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        <div class="carousel-item project-card" data-type="other">
+          <div class="carousel-item-content">
+            <div class="project-icon">📈</div>
+            <h3 class="carousel-item-title">BRVM Dashboard — Bourse en temps réel</h3>
+            <p class="project-description">Application web de suivi en temps réel des marchés financiers de la BRVM. Scraping Python toutes les 10 min, heatmap interactive, assistant IA (Groq / Llama 3.3), alertes email automatiques.</p>
+            <a href="https://github.com/misskone67-jpg" target="_blank" class="carousel-item-link">Voir sur GitHub <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        <div class="carousel-item project-card" data-type="app">
+          <div class="carousel-item-content">
+            <div class="project-icon">🔬</div>
+            <h3 class="carousel-item-title">App Analyse Univariée & Bivariée</h3>
+            <p class="project-description">Application interactive R Shiny pour l'analyse statistique univariée et bivariée complète. Statistiques descriptives, tests, visualisations dynamiques.</p>
+            <a href="https://kone12.shinyapps.io/unibiv/" target="_blank" class="carousel-item-link">Lancer l'application <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-indicators" id="projectsIndicators"></div>
+    </div>
+  </section>
+</div>
+
+<!-- VISUALISATION -->
+<div id="visualisation" class="page">
+  <section class="section">
+    <h2 class="section-title">Visualisation</h2>
+    <p style="text-align:center;color:var(--text-secondary);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto;">Découvrez mes projets de visualisation qui attestent de mes compétences en analyse de données visuelle.</p>
+    <div class="carousel-container" id="visualisationCarousel">
+      <button class="carousel-nav prev" id="visualisationPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-nav next" id="visualisationNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="carousel-wrapper" id="visualisationWrapper">
+        <div class="carousel-item">
+          <div class="carousel-item-content">
+            <div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(0,180,255,.2),rgba(0,102,204,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:1rem">📈</div>
+            <h3 class="carousel-item-title">🌸 BRVM Dashboard — Marchés financiers</h3>
+            <a href="https://github.com/misskone67-jpg" target="_blank" class="carousel-item-link">Voir le projet <i class="fas fa-external-link-alt"></i></a>
+            <p class="carousel-item-provider">Next.js · Python · API REST</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-item-content">
+            <div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(0,180,255,.2),rgba(0,80,170,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:1rem">🎗️</div>
+            <h3 class="carousel-item-title">🌺 Épidémiologie — Cancer du sein · Abidjan</h3>
+            <a href="projets/ pdf/cancer.pdf" target="_blank" class="carousel-item-link">Voir le rapport <i class="fas fa-external-link-alt"></i></a>
+            <p class="carousel-item-provider">Python · matplotlib · scipy</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-item-content">
+            <div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(0,180,255,.2),rgba(123,31,162,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:1rem">🛍️</div>
+            <h3 class="carousel-item-title">🍀 Segmentation clients — 4 clusters</h3>
+            <a href="projets/ pdf/multivariée.pdf" target="_blank" class="carousel-item-link">Voir le rapport <i class="fas fa-external-link-alt"></i></a>
+            <p class="carousel-item-provider">Python · scikit-learn · matplotlib</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-item-content">
+            <div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(0,180,255,.2),rgba(0,102,204,.1));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:1rem">🥛</div>
+            <h3 class="carousel-item-title">🌷 Analyse sensorielle — ACP & K-means</h3>
+            <a href="projets/ pdf/lait.pdf" target="_blank" class="carousel-item-link">Voir le rapport <i class="fas fa-external-link-alt"></i></a>
+            <p class="carousel-item-provider">R · ggplot2 · FactoMineR</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-indicators" id="visualisationIndicators"></div>
+    </div>
+  </section>
+</div>
+
+<!-- PARCOURS / TIMELINE -->
+<div id="certifications" class="page">
+  <section class="section">
+    <h2 class="section-title">Mon Parcours</h2>
+    <p style="text-align:center;color:var(--text-secondary);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto;">De la série C au Data Science — un parcours construit avec rigueur et passion.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2025</div>
+          <div class="tl-title">🎓 Baccalauréat Série C</div>
+          <div class="tl-sub">Lycée Moderne d'Anyama · Mathématiques & Sciences Physiques</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2026</div>
+          <div class="tl-title">📈 BRVM Dashboard</div>
+          <div class="tl-sub">Premier projet web full-stack avec IA intégrée · Python, Next.js, Groq/Llama 3.3</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2026</div>
+          <div class="tl-title">🔬 3 Projets Data Science</div>
+          <div class="tl-sub">Cancer du sein (AUC=0.728) · Segmentation clients · Analyse sensorielle · +570 observations</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2026</div>
+          <div class="tl-title">📊 L1 Statistique — INSSEDS</div>
+          <div class="tl-sub">Institut Supérieur de Statistique, d'Économétrie et de Data Science · Abidjan</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">Avr – Mai 2026</div>
+          <div class="tl-title">💼 Enquêtrice Terrain</div>
+          <div class="tl-sub">OpinionWay — Cabinet indépendant de recherche en marketing et sondage d'opinion · SurveyToGo</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:rgba(0,180,255,0.4);animation:floatPulse 1.5s infinite"></div>
+        <div class="tl-card" style="border-color:var(--accent-neon);opacity:.8">
+          <div class="tl-date">En cours…</div>
+          <div class="tl-title">🚀 Prochaine étape</div>
+          <div class="tl-sub">Certifications Data Science · L2 · Nouveaux projets à venir</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- À PROPOS -->
+<div id="about" class="page">
+  <section class="section">
+    <h2 class="section-title">À propos de moi</h2>
+    <div class="hero-content animate-fade-in">
+      <p style="max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--text-secondary)">Je suis Kone Tchitchemego, étudiante en Licence Statistique à l'INSSEDS d'Abidjan. Data Analyst, Data Scientist et Développeuse d'Applications, je transforme les données brutes en décisions stratégiques — épidémiologie, finance, marketing — et je développe des applications interactives (Streamlit, R Shiny, Next.js). Actuellement enquêtrice terrain chez OpinionWay, cabinet indépendant de recherche en marketing et sondage d'opinion.</p>
+
+      <!-- MODE RECRUTEUR / TECHNIQUE -->
+      <div class="mode-toggle">
+        <button class="mode-btn active" onclick="setMode('recruteur')">👔 Vue Recruteur</button>
+        <button class="mode-btn" onclick="setMode('technique')">⚙️ Vue Technique</button>
+      </div>
+      <div id="modeRecruteur">
+        <p style="max-width:700px;margin:0 auto 2rem;text-align:center;color:var(--text-secondary);font-size:1.05rem;line-height:1.8">
+        À 19 ans, je combine <strong style="color:var(--accent-neon)">analyse statistique avancée</strong> et <strong style="color:var(--accent-neon)">développement d'applications</strong> pour transformer des données complexes en décisions stratégiques. Mes projets couvrent l'épidémiologie, la finance et le marketing — avec des résultats mesurables (AUC=0,728 · Cramér V=0,87). Actuellement en L1 Statistique à l'INSSEDS et enquêtrice terrain chez OpinionWay (cabinet indépendant de recherche en marketing et sondage d'opinion).
+        </p>
+        <div class="radar-wrap">
+          <canvas id="radarCanvas"></canvas>
+          <div class="radar-legend" id="radarLegend"></div>
+        </div>
+      </div>
+      <div id="modeTechnique" style="display:none">
+        <p style="max-width:700px;margin:0 auto 1.5rem;text-align:center;color:var(--text-secondary)">Stack technique complet :</p>
+      <div class="carousel-container" id="skillsCarousel">
+        <button class="carousel-nav prev" id="skillsPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" id="skillsNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-wrapper" id="skillsWrapper">
+          <div class="carousel-item skill-card">
+            <div class="carousel-item-content">
+              <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+              <h3 class="carousel-item-title">🌸 Analyse de Données</h3>
+              <p>ACP, ACM, CAH, K-means, Régression logistique, Bootstrap, Tests non-paramétriques. ROC/AUC.</p>
+            </div>
+          </div>
+          <div class="carousel-item skill-card">
+            <div class="carousel-item-content">
+              <div class="skill-icon"><i class="fas fa-eye"></i></div>
+              <h3 class="carousel-item-title">📊 Visualisation</h3>
+              <p>Power BI, matplotlib, ggplot2, Streamlit, Excel avancé. Dashboards interactifs et rapports analytiques.</p>
+            </div>
+          </div>
+          <div class="carousel-item skill-card">
+            <div class="carousel-item-content">
+              <div class="skill-icon"><i class="fas fa-robot"></i></div>
+              <h3 class="carousel-item-title">🤖 Machine Learning</h3>
+              <p>scikit-learn, FactoMineR, cluster, tidyverse. Modélisation prédictive et segmentation avancée.</p>
+            </div>
+          </div>
+          <div class="carousel-item skill-card">
+            <div class="carousel-item-content">
+              <div class="skill-icon"><i class="fas fa-code"></i></div>
+              <h3 class="carousel-item-title">💻 Programmation</h3>
+              <p>Python, R, SQL. HTML, CSS, JavaScript, TypeScript, Next.js. Streamlit, API REST, Scraping Python.</p>
+            </div>
+          </div>
+          <div class="carousel-item skill-card">
+            <div class="carousel-item-content">
+              <div class="skill-icon"><i class="fas fa-map-marked-alt"></i></div>
+              <h3 class="carousel-item-title">🗺️ SIG & Collecte</h3>
+              <p>QGIS, KoboToolbox, ODK Build, SurveyToGo. Collecte terrain et enquêtes quantitatives — OpinionWay, cabinet indépendant de recherche en marketing et sondage d'opinion.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-indicators" id="skillsIndicators"></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <button class="btn btn-primary" onclick="showPage('projects')"><i class="fas fa-seedling"></i> Voir mes projets</button>
+      </div>
+      </div><!-- /modeTechnique -->
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <section class="section">
+    <h2 class="section-title">Me Contacter</h2>
+    <div class="hero-content animate-fade-in">
+      <p style="max-width:800px;margin:0 auto 2rem;text-align:center;color:var(--text-secondary)">Vous souhaitez discuter d'un projet, d'une collaboration ou d'une opportunité ? N'hésitez pas à me contacter via les canaux ci-dessous.</p>
+      <div class="carousel-container" id="contactCarousel">
+        <button class="carousel-nav prev" id="contactPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" id="contactNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-wrapper" id="contactWrapper">
+          <div class="carousel-item contact-card">
+            <div class="carousel-item-content">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <h3 class="carousel-item-title">📧 Email</h3>
+              <p><a href="mailto:misskone67@gmail.com" class="project-link">misskone67@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="carousel-item contact-card">
+            <div class="carousel-item-content">
+              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+              <h3 class="carousel-item-title">💼 LinkedIn</h3>
+              <p><a href="https://www.linkedin.com/in/tchitchemego-kone-1159b93a8" target="_blank" class="project-link">Tchitchemego Kone</a></p>
+            </div>
+          </div>
+          <div class="carousel-item contact-card">
+            <div class="carousel-item-content">
+              <div class="contact-icon"><i class="fab fa-github"></i></div>
+              <h3 class="carousel-item-title">💻 GitHub</h3>
+              <p><a href="https://github.com/misskone67-jpg" target="_blank" class="project-link">misskone67-jpg</a></p>
+            </div>
+          </div>
+          <div class="carousel-item contact-card">
+            <div class="carousel-item-content">
+              <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+              <h3 class="carousel-item-title">📞 Téléphone / WhatsApp</h3>
+              <p><a href="https://wa.me/2250798723860" target="_blank" class="project-link">+225 07 98 72 38 60</a></p>
+              <p><a href="https://wa.me/2250566230221" target="_blank" class="project-link">+225 05 66 23 02 21</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-indicators" id="contactIndicators"></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <button class="btn btn-secondary" onclick="showPage('home')"><i class="fas fa-home"></i> Retour à l'accueil</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CV -->
+<div id="cv" class="page">
+  <section class="section">
+    <h2 class="section-title">Curriculum Vitae</h2>
+    <div class="cv-container">
+      <div class="cv-header">
+        <div class="cv-photo">
+          <img src="actifs/ma-photo.png" onerror="this.onerror=null;this.src='https://misskone67-jpg.github.io/kone12.github.io/actifs/ma-photo.png'" alt="Kone Tchitchemego" onerror="this.style.display='none';document.getElementById('cvPhotoPlaceholder').style.display='flex'"/>
+          <div id="cvPhotoPlaceholder" class="cv-photo-placeholder" style="display:none">👩🏾</div>
+        </div>
+        <div class="cv-info">
+          <h1>KONE TCHITCHEMEGO</h1>
+          <h2>Data Analyst · Data Scientist · Dev d'Applications</h2>
+          <div class="contact-info">
+            <p>📧 misskone67@gmail.com</p>
+            <p>📱 +225 07 98 72 38 60 &nbsp;/&nbsp; +225 05 66 23 02 21</p>
+            <a href="https://github.com/misskone67-jpg" target="_blank">📂 github.com/misskone67-jpg</a><br/>
+            <a href="https://www.linkedin.com/in/tchitchemego-kone-1159b93a8" target="_blank">🔗 linkedin.com/in/tchitchemego-kone</a>
+            <p>🎓 INSSEDS — L1 Statistique &nbsp;·&nbsp; 📅 Née le 17/06/2006</p>
+            <p>🏠 Abidjan, Côte d'Ivoire</p>
+          </div>
+        </div>
+      </div>
+      <div class="cv-section">
+        <h3>🎯 PROFIL</h3>
+        <p>Étudiante en première année de Licence Statistique à l'INSSEDS, passionnée par l'analyse de données et leur application à des problématiques concrètes. Maîtrise les outils statistiques et informatiques fondamentaux, avec une forte capacité à mener des analyses rigoureuses, à produire des visualisations pertinentes et à formuler des recommandations fondées sur les données.</p>
+      </div>
+      <div class="cv-section">
+        <h3>💼 EXPÉRIENCE</h3>
+        <div class="job">
+          <div class="job-header">
+            <h4>Enquêtrice Terrain</h4>
+            <span class="period">Avril 2026 – Mai 2026</span>
+          </div>
+          <p class="company">OpinionWay — Cabinet indépendant de recherche en marketing et sondage d'opinion · Abidjan</p>
+          <ul>
+            <li>Collecte de données terrain dans le cadre d'une enquête quantitative auprès de populations cibles</li>
+            <li>Administration de questionnaires via SurveyToGo sur tablette — saisie et suivi en temps réel</li>
+            <li>Respect des protocoles d'échantillonnage et contrôle qualité des données collectées</li>
+            <li>Coordination avec l'équipe de supervision pour le reporting quotidien des avancées</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cv-section">
+        <h3>🎓 FORMATION</h3>
+        <div class="education">
+          <div class="edu-header">
+            <h4>Licence en Statistique</h4>
+            <span class="period">2026 – En cours</span>
+          </div>
+          <p class="school">INSSEDS — Institut Supérieur de Statistique, d'Économétrie et de Data Science · Abidjan</p>
+          <p>Analyse de données · Statistique descriptive & inférentielle · Probabilités · Économétrie · Data Science</p>
+        </div>
+        <div class="education">
+          <div class="edu-header">
+            <h4>Baccalauréat Série C</h4>
+            <span class="period">2025</span>
+          </div>
+          <p class="school">Lycée Moderne d'Anyama · Abidjan, Côte d'Ivoire</p>
+          <p>Mathématiques & Sciences Physiques</p>
+        </div>
+      </div>
+      <div class="cv-section">
+        <h3>🛠️ COMPÉTENCES TECHNIQUES</h3>
+        <div class="skills-section">
+          <div class="skill-category"><h5>🐍 Langages</h5><p>Python · R · SQL</p></div>
+          <div class="skill-category"><h5>🤖 ML & Statistiques</h5><p>Régression logistique · ACP · ACM · CAH · K-means · Bootstrap · Tests non-paramétriques · ROC/AUC · ANOVA · Friedman · Wilcoxon</p></div>
+          <div class="skill-category"><h5>📦 Librairies</h5><p>pandas · scikit-learn · matplotlib · scipy · ggplot2 · FactoMineR · tidyverse · cluster</p></div>
+          <div class="skill-category"><h5>🌐 Dev & Visu</h5><p>Streamlit · Power BI · Excel (avancé) · Next.js · TypeScript · HTML/CSS/JS · API REST · Scraping Python</p></div>
+          <div class="skill-category"><h5>🗺️ SIG & Collecte</h5><p>QGIS · KoboToolbox · ODK Build · SurveyToGo</p></div>
+          <div class="skill-category"><h5>💼 Bureautique</h5><p>Excel (avancé) · Word · PowerPoint</p></div>
+        </div>
+      </div>
+      <div class="cv-section">
+        <h3>🌟 PROJETS ACADÉMIQUES</h3>
+        <div class="project-cv">
+          <h4>🛍️ Segmentation clients — Centre commercial (2026)</h4>
+          <p>Analyse multidimensionnelle (ACP, ACM, CAH, K-means) sur 200 clients. 4 segments distincts. Tests ANOVA, Kruskal-Wallis, Chi-2. Recommandations marketing.</p>
+        </div>
+        <div class="project-cv">
+          <h4>🎗️ Cancer du sein — Modélisation du risque (2026)</h4>
+          <p>250 femmes · Régression logistique + bootstrap (1 000 itérations) · AUC = 0,728.</p>
+        </div>
+        <div class="project-cv">
+          <h4>🥛 Analyse sensorielle — 3 laits en poudre (2026)</h4>
+          <p>120 consommateurs · 12 attributs · Friedman, Wilcoxon, K-means (3 clusters), ACP.</p>
+        </div>
+        <div class="project-cv">
+          <h4>📈 BRVM Dashboard (2026)</h4>
+          <p>Application web de suivi en temps réel des marchés financiers de la BRVM. Python, Next.js, IA Groq/Llama 3.3 intégrée.</p>
+        </div>
+      </div>
+      <div class="cv-section">
+        <h3>🌐 LANGUES</h3>
+        <div class="lang-item"><span>🇫🇷 Français</span><span>Langue maternelle</span></div>
+        <div class="lang-item"><span>🇬🇧 Anglais</span><span>Débutant</span></div>
+      </div>
+      <div class="cv-section">
+        <h3>💡 QUALITÉS</h3>
+        <div class="skills-section">
+          <div class="skill-category"><h5>🔍 Rigueur analytique</h5></div>
+          <div class="skill-category"><h5>💡 Curiosité intellectuelle</h5></div>
+          <div class="skill-category"><h5>🎯 Sens du détail</h5></div>
+          <div class="skill-category"><h5>🤝 Travail en équipe</h5></div>
+          <div class="skill-category"><h5>⚡ Autonomie & initiative</h5></div>
+          <div class="skill-category"><h5>📢 Capacité de synthèse</h5></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <a href="#" class="btn btn-primary" onclick="window.print()"><i class="fas fa-print"></i> Imprimer le CV</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<footer>
+  <p>&copy; 2026 Kone Tchitchemego · Data Analyst · Statisticienne 🌸</p>
+  <div style="margin-top:1rem;display:flex;justify-content:center;gap:1.5rem">
+    <a href="https://www.linkedin.com/in/tchitchemego-kone-1159b93a8" target="_blank" class="project-link" style="font-size:1.4rem"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/misskone67-jpg" target="_blank" class="project-link" style="font-size:1.4rem"><i class="fab fa-github"></i></a>
+    <a href="mailto:misskone67@gmail.com" class="project-link" style="font-size:1.4rem"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/2250798723860" target="_blank" class="project-link" style="font-size:1.4rem"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+
+<script>
+/* ══════════════════════════════════════
+   PARTICULES WAOUH — v2
+   • Respecte prefers-reduced-motion
+   • Densité adaptative (mobile/tablette/desktop)
+   • Couleur live depuis CSS variable
+   • Particules avec taille, vitesse et opacité variées
+   • Connexions avec épaisseur proportionnelle à la distance
+   • Effet "clic" : explosion de particules
+   • Grille spatiale pour performances O(n) au lieu de O(n²)
+══════════════════════════════════════ */
+function getAccentRGB() {
+  const col = getComputedStyle(document.documentElement).getPropertyValue('--accent-neon').trim() || '#00b4ff';
+  const c = col.startsWith('#') ? col : '#00b4ff';
+  return [parseInt(c.slice(1,3),16)||0, parseInt(c.slice(3,5),16)||180, parseInt(c.slice(5,7),16)||255];
+}
+
+class ParticleSystem {
+  constructor() {
+    this.canvas = document.getElementById('particle-bg');
+    this.ctx = this.canvas.getContext('2d');
+    this.mouse = {x:null, y:null, clicking:false};
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.particles = [];
+    this.shootingStars = [];
+    this.lastShoot = 0;
+    this.grid = {};
+    this.CELL = 130;
+    this.resize();
+    this.spawn();
+    this.bindEvents();
+    if(!this.reduced) this.loop();
+    else this.drawStatic();
+  }
+
+  get count() {
+    const w = this.canvas.width;
+    if(this.reduced) return 20;
+    if(w < 480) return 35;
+    if(w < 768) return 55;
+    if(w < 1200) return 75;
+    return 100;
+  }
+
+  resize() {
+    this.canvas.width  = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.grid = {};
+  }
+
+  spawn() {
+    this.particles = [];
+    for(let i = 0; i < this.count; i++) {
+      this.particles.push(this.newParticle(true));
+    }
+  }
+
+  newParticle(random=false) {
+    const W = this.canvas.width, H = this.canvas.height;
+    const tier = Math.random(); // 0=tiny, 1=large
+    return {
+      x: random ? Math.random()*W : (Math.random()<0.5 ? -5 : W+5),
+      y: random ? Math.random()*H : Math.random()*H,
+      vx: (Math.random()-0.5) * (tier < 0.5 ? 0.3 : 0.7),
+      vy: (Math.random()-0.5) * (tier < 0.5 ? 0.3 : 0.7),
+      r:  tier < 0.4 ? 1 + Math.random() : tier < 0.8 ? 1.8 + Math.random()*1.2 : 3 + Math.random()*1.5,
+      o:  0.2 + Math.random()*0.6,
+      pulse: Math.random()*Math.PI*2,
+      pulseSpeed: 0.02 + Math.random()*0.03,
+    };
+  }
+
+  buildGrid() {
+    this.grid = {};
+    this.particles.forEach((p,i) => {
+      const key = `${Math.floor(p.x/this.CELL)},${Math.floor(p.y/this.CELL)}`;
+      if(!this.grid[key]) this.grid[key]=[];
+      this.grid[key].push(i);
+    });
+  }
+
+  neighbors(p) {
+    const cx = Math.floor(p.x/this.CELL), cy = Math.floor(p.y/this.CELL);
+    const result = [];
+    for(let dx=-1;dx<=1;dx++) for(let dy=-1;dy<=1;dy++) {
+      const arr = this.grid[`${cx+dx},${cy+dy}`];
+      if(arr) arr.forEach(i => result.push(i));
+    }
+    return result;
+  }
+
+  spawnExplosion(x, y) {
+    for(let i=0; i<12; i++) {
+      const angle = (i/12)*Math.PI*2;
+      const speed = 1.5 + Math.random()*3;
+      this.particles.push({
+        x, y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        r: 1.5 + Math.random()*2,
+        o: 0.9,
+        pulse: 0,
+        pulseSpeed: 0.05,
+        decay: true,
+      });
+    }
+  }
+
+  spawnShootingStar() {
+    const W = this.canvas.width, H = this.canvas.height;
+    this.shootingStars.push({
+      x: Math.random()*W*0.7,
+      y: Math.random()*H*0.3,
+      vx: 4 + Math.random()*6,
+      vy: 1.5 + Math.random()*3,
+      life: 1,
+      len: 80 + Math.random()*120,
+    });
+  }
+
+  update() {
+    const W = this.canvas.width, H = this.canvas.height;
+    const mx = this.mouse.x, my = this.mouse.y;
+
+    this.particles = this.particles.filter(p => {
+      if(p.decay) { p.o -= 0.025; return p.o > 0; }
+      return true;
+    });
+
+    while(this.particles.length < this.count) this.particles.push(this.newParticle(false));
+
+    this.particles.forEach(p => {
+      p.pulse += p.pulseSpeed;
+
+      // Mouse repulsion (smooth)
+      if(mx !== null && !p.decay) {
+        const dx = p.x-mx, dy = p.y-my;
+        const d2 = dx*dx+dy*dy;
+        if(d2 < 14400) { // 120^2
+          const d = Math.sqrt(d2);
+          const force = (120-d)/120 * 1.8;
+          p.vx += (dx/d)*force*0.08;
+          p.vy += (dy/d)*force*0.08;
+        }
+        // Mouse attraction on click
+        if(this.mouse.clicking && d2 < 40000) {
+          const d = Math.sqrt(d2);
+          p.vx -= (dx/d)*2;
+          p.vy -= (dy/d)*2;
+        }
+      }
+
+      // Speed damping
+      p.vx *= 0.98; p.vy *= 0.98;
+      // Max speed
+      const spd = Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+      if(spd > 3) { p.vx=(p.vx/spd)*3; p.vy=(p.vy/spd)*3; }
+
+      p.x += p.vx; p.y += p.vy;
+
+      // Wrap around edges
+      if(p.x < -10) p.x = W+10;
+      if(p.x > W+10) p.x = -10;
+      if(p.y < -10) p.y = H+10;
+      if(p.y > H+10) p.y = -10;
+    });
+
+    // Shooting stars
+    this.shootingStars = this.shootingStars.filter(s => s.life > 0);
+    this.shootingStars.forEach(s => { s.x+=s.vx; s.y+=s.vy; s.life-=0.02; });
+    if(!this.reduced && Math.random()<0.004 && this.shootingStars.length<3) this.spawnShootingStar();
+  }
+
+  draw() {
+    const ctx = this.ctx, W = this.canvas.width, H = this.canvas.height;
+    const [r,g,b] = getAccentRGB();
+    ctx.clearRect(0,0,W,H);
+
+    this.buildGrid();
+
+    // Draw connections using spatial grid (O(n) performance)
+    const seen = new Set();
+    this.particles.forEach((p, i) => {
+      this.neighbors(p).forEach(j => {
+        if(j<=i) return;
+        const key = i*10000+j;
+        if(seen.has(key)) return;
+        seen.add(key);
+        const q = this.particles[j];
+        const dx=p.x-q.x, dy=p.y-q.y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if(d < this.CELL) {
+          const op = ((this.CELL-d)/this.CELL) * 0.18;
+          const lw = ((this.CELL-d)/this.CELL) * 1.2;
+          ctx.strokeStyle = `rgba(${r},${g},${b},${op})`;
+          ctx.lineWidth = lw;
+          ctx.beginPath();
+          ctx.moveTo(p.x,p.y);
+          ctx.lineTo(q.x,q.y);
+          ctx.stroke();
+        }
+      });
+    });
+
+    // Draw particles
+    this.particles.forEach(p => {
+      const pulse = 0.85 + Math.sin(p.pulse)*0.15;
+      const op = (p.decay ? p.o : p.o * pulse);
+      const radius = p.r * pulse;
+
+      // Glow
+      if(p.r > 2) {
+        const grd = ctx.createRadialGradient(p.x,p.y,0, p.x,p.y,radius*4);
+        grd.addColorStop(0, `rgba(${r},${g},${b},${op*0.4})`);
+        grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        ctx.beginPath(); ctx.arc(p.x,p.y,radius*4,0,Math.PI*2);
+        ctx.fillStyle=grd; ctx.fill();
+      }
+
+      // Core
+      ctx.beginPath(); ctx.arc(p.x,p.y,radius,0,Math.PI*2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${op})`;
+      ctx.fill();
+    });
+
+    // Shooting stars
+    this.shootingStars.forEach(s => {
+      const grad = ctx.createLinearGradient(s.x-s.vx*s.len/s.vx,s.y-s.vy*s.len/s.vx, s.x,s.y);
+      grad.addColorStop(0, `rgba(${r},${g},${b},0)`);
+      grad.addColorStop(1, `rgba(${r},${g},${b},${s.life*0.8})`);
+      ctx.beginPath();
+      ctx.moveTo(s.x-s.len, s.y-(s.len*s.vy/s.vx));
+      ctx.lineTo(s.x,s.y);
+      ctx.strokeStyle=grad; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(s.x,s.y,2,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${s.life})`; ctx.fill();
+    });
+  }
+
+  drawStatic() {
+    this.draw();
+  }
+
+  loop() {
+    this.update();
+    this.draw();
+    requestAnimationFrame(()=>this.loop());
+  }
+
+  bindEvents() {
+    window.addEventListener('resize', ()=>{ this.resize(); this.spawn(); });
+    window.addEventListener('mousemove', e=>{ this.mouse.x=e.clientX; this.mouse.y=e.clientY; });
+    window.addEventListener('mouseleave', ()=>{ this.mouse.x=null; this.mouse.y=null; });
+    window.addEventListener('mousedown', e=>{ this.mouse.clicking=true; this.spawnExplosion(e.clientX,e.clientY); });
+    window.addEventListener('mouseup', ()=>{ this.mouse.clicking=false; });
+    window.addEventListener('touchmove', e=>{
+      const t=e.touches[0]; this.mouse.x=t.clientX; this.mouse.y=t.clientY;
+    }, {passive:true});
+  }
+}
+
+/* ── Carousel ── */
+class Carousel{constructor(id){this.con=document.getElementById(id);if(!this.con)return;this.wrap=this.con.querySelector('.carousel-wrapper');if(!this.wrap)return;this.items=this.wrap.querySelectorAll('.carousel-item');if(!this.items||this.items.length===0)return;this.prev=this.con.querySelector('.carousel-nav.prev');this.next=this.con.querySelector('.carousel-nav.next');this.ind=this.con.querySelector('.carousel-indicators');this.cur=0;this.iw=350;this.gap=32;this.ipv=this.getIPV();this.init();this.bind()}
+getIPV(){if(window.innerWidth<=480)return 1;if(window.innerWidth<=768)return 1;if(window.innerWidth<=1024)return 2;return 3}
+init(){this.createDots();this.update();this.updateBtns()}
+createDots(){if(!this.ind||!this.items||this.items.length===0)return;this.ind.innerHTML='';const t=Math.ceil(this.items.length/Math.max(1,this.ipv));for(let i=0;i<t;i++){const d=document.createElement('div');d.className='carousel-dot'+(i===0?' active':'');d.addEventListener('click',()=>this.goTo(i*this.ipv));this.ind.appendChild(d)}}
+bind(){if(this.prev)this.prev.addEventListener('click',()=>this.prevS());if(this.next)this.next.addEventListener('click',()=>this.nextS());window.addEventListener('resize',()=>{this.ipv=this.getIPV();this.createDots();this.update();this.updateBtns()});let sx=0;this.wrap.addEventListener('touchstart',e=>{sx=e.touches[0].clientX});this.wrap.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>50)d>0?this.nextS():this.prevS()})}
+update(){const tx=-(this.cur*(this.iw+this.gap));this.wrap.style.transform=`translateX(${tx}px)`;const pg=Math.floor(this.cur/this.ipv);this.ind&&this.ind.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===pg))}
+updateBtns(){if(this.prev)this.prev.disabled=this.cur===0;if(this.next)this.next.disabled=this.cur>=this.items.length-this.ipv}
+prevS(){if(this.cur>0){this.cur=Math.max(0,this.cur-this.ipv);this.update();this.updateBtns()}}
+nextS(){if(this.cur<this.items.length-this.ipv){this.cur=Math.min(this.items.length-this.ipv,this.cur+this.ipv);this.update();this.updateBtns()}}
+goTo(i){this.cur=Math.max(0,Math.min(i,this.items.length-this.ipv));this.update();this.updateBtns()}}
+
+/* ── Scroll progress ── */
+const sp=document.getElementById("scrollProgress");
+window.addEventListener("scroll",()=>{const s=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.transform=`scaleX(${s/h})`});
+
+/* ── Navigation ── */
+const cars={};
+function safeCarousel(id){try{if(!cars[id])cars[id]=new Carousel(id);}catch(e){console.warn('Carousel:',id,e)}}
+
+window.showPage = function(pid){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link,.mobile-nav-link').forEach(l=>l.classList.remove('active'));
+  const t=document.getElementById(pid);
+  if(t)t.classList.add('active');
+  const l=document.querySelector(`.nav-link[data-page="${pid}"],.mobile-nav-link[data-page="${pid}"]`);
+  if(l)l.classList.add('active');
+  document.getElementById('mobileMenuOverlay').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{
+    const m={projects:['projectsCarousel'],visualisation:['visualisationCarousel'],about:['skillsCarousel'],contact:['contactCarousel']};
+    (m[pid]||[]).forEach(id=>safeCarousel(id));
+  },100);
+};
+
+document.querySelectorAll('.nav-link,.mobile-nav-link').forEach(l=>{
+  l.addEventListener('click',e=>{e.preventDefault();showPage(l.getAttribute('data-page'));});
+});
+document.getElementById('mobileMenuBtn').addEventListener('click',()=>document.getElementById('mobileMenuOverlay').classList.toggle('show'));
+document.getElementById('mobileMenuOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('mobileMenuOverlay'))document.getElementById('mobileMenuOverlay').classList.remove('show');});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50));
+
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.getAttribute('data-type');
+  document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(c=>{c.style.display=(t==='all'||c.getAttribute('data-type')===t)?'block':'none';});
+  setTimeout(()=>safeCarousel('projectsCarousel'),100);
+}));
+
+/* ── Init ── */
+window.addEventListener('load',()=>{
+  new ParticleSystem();
+  safeCarousel('projectsCarousel');
+  const saved=localStorage.getItem('portfolio-theme')||'rose';
+  applyTheme(saved);
+});
+</script>
+
+<!-- ── Typing animation ── -->
+<script>
+(function(){
+  const phrases=[
+    "« Je transforme les données en décisions stratégiques »",
+    "« Data Analyst · Data Scientist · Dev d'Applications »",
+    "« De l'épidémiologie à la finance, les données parlent »",
+    "« Chaque dataset cache une histoire. Je la raconte. »",
+    "« Je ne subis pas les données. Je les interroge. »",
+    "« INSSEDS forme les meilleures. Je suis la preuve. »",
+    "« Les chiffres ont une âme. Je la révèle. »",
+    "« Abidjan → Data → Impact »"
+  ];
+  const el=document.getElementById('hero-typed');
+  if(!el)return;
+  let pi=0,ci=0,del=false,pause=0;
+  function type(){
+    if(pause>0){pause--;setTimeout(type,50);return;}
+    const phrase=phrases[pi];
+    if(!del){el.textContent=phrase.slice(0,ci+1);ci++;if(ci===phrase.length){del=true;pause=60;setTimeout(type,50);return;}setTimeout(type,55);}
+    else{el.textContent=phrase.slice(0,ci-1);ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;pause=20;setTimeout(type,50);return;}setTimeout(type,28);}
+  }
+  setTimeout(type,1200);
+})();
+</script>
+
+<!-- ── CHAT IA (Groq) — VERSION CORRIGÉE ── -->
+<script>
+const GROQ_KEY = ['gsk_tp7eKc4recFCs','lOLTjFuWGdyb3FY','BaPJ45kvBL1taAih2wVrheuV'].join('');
+
+const chatHistory = [
+  {role:'system', content:`Tu es l'assistante IA personnelle de Kone Tchitchemego, intégrée dans son portfolio. Tu parles en son nom, avec fierté et enthousiasme.
+
+Quand on te demande de présenter Kone, qui elle est, son profil ou son parcours, tu dois faire une présentation ÉPOUSTOUFLANTE, dynamique, avec des emojis, qui donne envie de la recruter immédiatement. Mets en avant ses réalisations chiffrées, sa polyvalence exceptionnelle et son jeune âge comme un atout extraordinaire.
+
+═══════════════════════════════════════
+IDENTITÉ COMPLÈTE
+═══════════════════════════════════════
+Nom : Kone Tchitchemego
+Date de naissance : 17 juin 2006 — elle n'a que 19 ans et elle réalise déjà des projets de niveau professionnel !
+Localisation : Abidjan, Côte d'Ivoire
+Formation : L1 Statistique à l'INSSEDS (Institut Supérieur de Statistique, d'Économétrie et de Data Science — à ne pas confondre avec l'INSEE !), depuis 2026
+Baccalauréat Série C obtenu en 2025 au Lycée Moderne d'Anyama — mention en mathématiques et sciences physiques.
+
+TITRE PROFESSIONNEL : Data Analyst · Data Scientist · Développeuse d'Applications
+
+═══════════════════════════════════════
+COMPÉTENCES TECHNIQUES
+═══════════════════════════════════════
+Langages : Python, R, SQL
+Machine Learning : Régression logistique, K-means, ACP, ACM, CAH, Bootstrap, ROC/AUC, ANOVA, Friedman, Wilcoxon
+Librairies Python : pandas, scikit-learn, matplotlib, scipy
+Librairies R : ggplot2, FactoMineR, tidyverse, cluster
+Visualisation & BI : Power BI, Streamlit, Excel avancé, Jupyter
+Développement Web : Next.js, TypeScript, HTML/CSS/JS, API REST, Scraping Python
+SIG & Collecte terrain : QGIS, KoboToolbox, ODK Build, SurveyToGo
+Bureautique : Excel avancé, Word, PowerPoint
+
+═══════════════════════════════════════
+PROJETS RÉALISÉS (avec chiffres clés)
+═══════════════════════════════════════
+1. BRVM Dashboard (2026) : Application web de suivi EN TEMPS RÉEL des marchés financiers de la Bourse Régionale des Valeurs Mobilières d'Afrique de l'Ouest. Scraping Python automatique toutes les 10 minutes, visualisations interactives (heatmap, graphiques sectoriels), assistant IA intégré (Groq/Llama 3.3), alertes email automatiques sur prix cibles (Nodemailer). Stack : Python, Next.js, TypeScript.
+
+2. Segmentation clients — Centre commercial (2025-2026) : Analyse multidimensionnelle (ACP, ACM, CAH, K-means) sur 200 clients. 4 profils distincts identifiés. Tests ANOVA et Chi-2 (Cramér V=0,87). Recommandations marketing ciblées et actionnables.
+
+3. Cancer du sein — Modélisation du risque (2025-2026) : Étude épidémiologique sur 250 femmes à Abidjan. Régression logistique multivariée + bootstrap (1 000 itérations). AUC = 0,728. Facteurs de risque identifiés (OR : 1,73 à 3,48). Impact en santé publique.
+
+4. Analyse sensorielle — 3 laits en poudre (2025-2026) : Test en aveugle auprès de 120 consommateurs, 12 attributs analysés. Tests Friedman, Wilcoxon-Bonferroni, K-means (3 clusters), ACP. Recommandations de positionnement produit.
+
+5. App R Shiny Analyse Univariée & Bivariée : Application statistique interactive déployée en ligne sur shinyapps.io. Accessible à tous.
+
+═══════════════════════════════════════
+EXPÉRIENCE PROFESSIONNELLE
+═══════════════════════════════════════
+Enquêtrice Terrain — OpinionWay (Avril-Mai 2026)
+Cabinet indépendant de recherche en marketing et sondage d'opinion. Collecte de données terrain, administration de questionnaires via SurveyToGo, contrôle qualité, reporting.
+
+═══════════════════════════════════════
+CONTACTS
+═══════════════════════════════════════
+Email : misskone67@gmail.com
+Téléphone : +225 05 66 23 02 21
+GitHub : github.com/misskone67-jpg
+LinkedIn : linkedin.com/in/tchitchemego-kone-1159b93a8
+Langues : Français (natif), Anglais (débutant)
+
+═══════════════════════════════════════
+INSTRUCTIONS DE PRÉSENTATION
+═══════════════════════════════════════
+Quand quelqu'un demande "qui es-tu", "présente-toi", "c'est qui Kone", "parle-moi d'elle" ou toute question similaire :
+→ Commence par un titre accrocheur avec des emojis
+→ Mets en avant son jeune âge (19 ans !) comme quelque chose d'exceptionnel
+→ Cite les chiffres clés de ses projets (250 patientes, AUC=0.728, 200 clients, etc.)
+→ Souligne sa double compétence : stats rigoureuses ET développement web
+→ Termine par une phrase inspirante et engageante
+→ Utilise des emojis pour rendre la présentation vivante et mémorable
+→ Sois enthousiaste, fière, comme si tu présentais quelqu'un d'exceptionnel — parce qu'elle l'est !
+
+Pour toutes les autres questions (data science, statistiques, programmation), réponds de façon pédagogue et claire en français.`}
+];
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  if(!input) return;
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = '';
+  input.style.height = 'auto';
+  appendMsg('user', msg);
+  chatHistory.push({role:'user', content: msg});
+  showTyping();
+  document.getElementById('chatSendBtn').disabled = true;
+
+  fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + GROQ_KEY
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: chatHistory.slice(-10),
+      max_tokens: 1024,
+      temperature: 0.7
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    hideTyping();
+    var reply = (data.choices && data.choices[0]) ? data.choices[0].message.content : '⚠️ Réponse indisponible.';
+    if(data.error) reply = '⚠️ Erreur : ' + data.error.message;
+    chatHistory.push({role:'assistant', content: reply});
+    appendMsg('bot', reply);
+    document.getElementById('chatSendBtn').disabled = false;
+  })
+  .catch(function(){
+    hideTyping();
+    appendMsg('bot', '⚠️ Erreur de connexion. Vérifiez votre connexion internet.');
+    document.getElementById('chatSendBtn').disabled = false;
+  });
+}
+
+function appendMsg(role, text) {
+  const box = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.innerHTML = '<div class="msg-avatar">'+(role==='bot'?'🤖':'👩🏾')+'</div><div class="msg-bubble">'+text.replace(/\n/g,'<br>')+'</div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function showTyping() {
+  const box = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.id = 'typingMsg';
+  div.innerHTML = '<div class="msg-avatar">🤖</div><div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function hideTyping() {
+  const t = document.getElementById('typingMsg');
+  if(t) t.remove();
+}
+
+function sendSuggestion(btn) {
+  document.getElementById('chatInput').value = btn.textContent;
+  sendMessage();
+}
+
+/* Attache les événements directement — sans DOMContentLoaded */
+document.getElementById('chatInput').onkeydown = function(e) {
+  if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+};
+document.getElementById('chatInput').oninput = function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+};
+</script>
+
+<!-- ── Thèmes ── -->
+<script>
+const themes = {
+  blue:   {accent:'#00b4ff',accent2:'#0066cc',accent3:'#0044bb',bg:'#050d1a',bg2:'#030810',surface:'rgba(0,180,255,0.15)',border:'rgba(0,180,255,0.3)',particle:'rgba(0,180,255,0.4)',text:'#f0f8ff',text2:'#ddeeff',muted:'#7ab8f5'},
+  rose:   {accent:'#e91e8c',accent2:'#c2185b',accent3:'#ad1457',bg:'#141414',bg2:'#0a0a0a',surface:'rgba(233,30,140,0.15)',border:'rgba(233,30,140,0.3)',particle:'rgba(233,30,140,0.4)',text:'#fff0f6',text2:'#f3e5f5',muted:'#ce93d8'},
+  green:  {accent:'#00ff88',accent2:'#00cc66',accent3:'#009944',bg:'#020d05',bg2:'#010802',surface:'rgba(0,255,136,0.15)',border:'rgba(0,255,136,0.3)',particle:'rgba(0,255,136,0.4)',text:'#f0fff6',text2:'#ccffe0',muted:'#66ffaa'},
+  violet: {accent:'#bf5af2',accent2:'#9b59b6',accent3:'#7b2fbe',bg:'#080010',bg2:'#040008',surface:'rgba(191,90,242,0.15)',border:'rgba(191,90,242,0.3)',particle:'rgba(191,90,242,0.4)',text:'#faf0ff',text2:'#eedeff',muted:'#d4a7ff'},
+  gold:   {accent:'#f4c842',accent2:'#e6a817',accent3:'#b8860b',bg:'#0d0900',bg2:'#080600',surface:'rgba(244,200,66,0.15)',border:'rgba(244,200,66,0.3)',particle:'rgba(244,200,66,0.4)',text:'#fffdf0',text2:'#fff8cc',muted:'#ffe066'},
+  light:  {accent:'#0066cc',accent2:'#0044aa',accent3:'#003388',bg:'#f5f7fa',bg2:'#eaecf0',surface:'rgba(0,102,204,0.08)',border:'rgba(0,102,204,0.2)',particle:'rgba(0,102,204,0.2)',text:'#111827',text2:'#374151',muted:'#6b7280'},
+};
+
+function applyTheme(name) {
+  const t=themes[name]||themes.blue;
+  const r=document.documentElement.style;
+  r.setProperty('--accent-neon',t.accent);
+  r.setProperty('--accent-pink',t.accent2);
+  r.setProperty('--accent-purple',t.accent3);
+  r.setProperty('--primary-bg',t.bg);
+  r.setProperty('--secondary-bg',t.bg2);
+  r.setProperty('--surface-holo',t.surface);
+  r.setProperty('--border-neon','1px solid '+t.border);
+  r.setProperty('--particle-color',t.particle);
+  r.setProperty('--text-primary',t.text);
+  r.setProperty('--text-secondary',t.text2);
+  r.setProperty('--text-muted',t.muted);
+  r.setProperty('--shadow-neon','0 0 15px '+t.particle);
+  r.setProperty('--shadow-glow','0 0 30px '+t.particle);
+  r.setProperty('--gradient-neon','linear-gradient(135deg,'+t.accent+' 0%,'+t.accent2+' 100%)');
+  r.setProperty('--gradient-accent','linear-gradient(135deg,'+t.accent+' 0%,'+t.accent3+' 100%)');
+  localStorage.setItem('portfolio-theme',name);
+  const p=document.getElementById('themePanel');
+  if(p)p.classList.remove('open');
+}
+
+function toggleThemePanel() {
+  const p=document.getElementById('themePanel');
+  if(p)p.classList.toggle('open');
+}
+
+document.addEventListener('click',function(e){
+  const sw=document.getElementById('themeSwitcher');
+  if(sw&&!sw.contains(e.target)){const p=document.getElementById('themePanel');if(p)p.classList.remove('open');}
+});
+</script>
+
+
+<!-- ── SCROLL TO TOP ── -->
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page"><i class="fas fa-chevron-up"></i></button>
+
+<!-- ── BOUTON CHAT FLOTTANT ── -->
+<button id="floatChatBtn" onclick="toggleFloatChat()" title="Assistant IA">🤖</button>
+
+<div id="floatChatOverlay">
+  <div class="fchat-header">
+    <div class="fchat-header-left">
+      <div class="fchat-dot"></div>
+      <div>
+        <h3>💬 Assistant IA</h3>
+        <p>Llama 3.3 · Groq</p>
+      </div>
+    </div>
+    <button class="fchat-close" onclick="toggleFloatChat()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="fchat-messages" id="fchatMessages">
+    <div class="fchat-msg bot">
+      <div class="fchat-av">🤖</div>
+      <div class="fchat-bubble">Bonjour ! Posez-moi n'importe quelle question sur Kone ou sur la data science 😊</div>
+    </div>
+  </div>
+  <div class="fchat-suggestions-wrap">
+    <span class="fchat-sug-title">Suggestions rapides :</span>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+      <button class="fchat-sug" onclick="fsuggest(this)">Qui est Kone ?</button>
+      <button class="fchat-sug" onclick="fsuggest(this)">Ses projets ?</button>
+      <button class="fchat-sug" onclick="fsuggest(this)">C'est quoi l'ACP ?</button>
+      <button class="fchat-sug" onclick="fsuggest(this)">Python vs R ?</button>
+      <button class="fchat-sug" onclick="fsuggest(this)">Ses contacts ?</button>
+    </div>
+  </div>
+  <div class="fchat-input-area">
+    <textarea class="fchat-input" id="fchatInput" placeholder="Votre message..." rows="1"></textarea>
+    <button class="fchat-send" id="fchatSendBtn" onclick="fsend()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ── FLOATING CHAT LOGIC ── */
+var fchatOpen = false;
+var fchatHistory = [chatHistory[0]]; // réutilise le même system prompt
+
+function toggleFloatChat() {
+  fchatOpen = !fchatOpen;
+  var overlay = document.getElementById('floatChatOverlay');
+  var btn = document.getElementById('floatChatBtn');
+  overlay.classList.toggle('open', fchatOpen);
+  btn.textContent = fchatOpen ? '✕' : '🤖';
+  if(fchatOpen) {
+    setTimeout(function(){ document.getElementById('fchatInput').focus(); }, 200);
+    var box = document.getElementById('fchatMessages');
+    box.scrollTop = box.scrollHeight;
+  }
+}
+
+function fsend() {
+  var input = document.getElementById('fchatInput');
+  if(!input) return;
+  var msg = input.value.trim();
+  if(!msg) return;
+  input.value = '';
+  input.style.height = 'auto';
+  fappendMsg('user', msg);
+  fchatHistory.push({role:'user', content: msg});
+  fshowTyping();
+  document.getElementById('fchatSendBtn').disabled = true;
+
+  fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + GROQ_KEY
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: fchatHistory.slice(-10),
+      max_tokens: 1024,
+      temperature: 0.7
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    fhideTyping();
+    var reply = (data.choices && data.choices[0]) ? data.choices[0].message.content : '⚠️ Réponse indisponible.';
+    if(data.error) reply = '⚠️ Erreur : ' + data.error.message;
+    fchatHistory.push({role:'assistant', content: reply});
+    fappendMsg('bot', reply);
+    document.getElementById('fchatSendBtn').disabled = false;
+  })
+  .catch(function(){
+    fhideTyping();
+    fappendMsg('bot', '⚠️ Erreur de connexion.');
+    document.getElementById('fchatSendBtn').disabled = false;
+  });
+}
+
+function fappendMsg(role, text) {
+  var box = document.getElementById('fchatMessages');
+  var div = document.createElement('div');
+  div.className = 'fchat-msg ' + role;
+  div.innerHTML = '<div class="fchat-av">'+(role==='bot'?'🤖':'👩🏾')+'</div><div class="fchat-bubble">'+text.replace(/\n/g,'<br>')+'</div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function fshowTyping() {
+  var box = document.getElementById('fchatMessages');
+  var div = document.createElement('div');
+  div.className = 'fchat-msg bot';
+  div.id = 'ftypingMsg';
+  div.innerHTML = '<div class="fchat-av">🤖</div><div class="fchat-bubble"><div class="fchat-typing"><span></span><span></span><span></span></div></div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function fhideTyping() {
+  var t = document.getElementById('ftypingMsg');
+  if(t) t.remove();
+}
+
+function fsuggest(btn) {
+  document.getElementById('fchatInput').value = btn.textContent;
+  fsend();
+}
+
+document.getElementById('fchatInput').onkeydown = function(e) {
+  if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); fsend(); }
+};
+document.getElementById('fchatInput').oninput = function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+};
+</script>
+
+
+<script>
+/* ── SCROLL TO TOP ── */
+window.addEventListener('scroll', function(){
+  var btn = document.getElementById('scrollTopBtn');
+  if(btn) btn.classList.toggle('show', window.scrollY > 400);
+});
+
+
+/* ── RADAR CHART ── */
+function drawRadar() {
+  var canvas = document.getElementById('radarCanvas');
+  if(!canvas) return;
+
+  // Responsive size
+  var wrap = canvas.parentElement;
+  var size = Math.min(wrap.offsetWidth || 420, 420);
+  canvas.width = size * (window.devicePixelRatio||1);
+  canvas.height = size * (window.devicePixelRatio||1);
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  ctx.scale(dpr, dpr);
+  var W = size, H = size;
+  var cx = W/2, cy = H/2;
+  var R = Math.min(W,H)*0.32;
+  var LABEL_R = R + 42;
+
+  function getAccent() { return getComputedStyle(document.documentElement).getPropertyValue('--accent-neon').trim()||'#00b4ff'; }
+  function hexToRgb(hex){hex=hex.replace('#','');return[parseInt(hex.slice(0,2),16),parseInt(hex.slice(2,4),16),parseInt(hex.slice(4,6),16)];}
+
+  var skills = [
+    {label:'Statistiques',     value:0.88, desc:'Inférentielle, tests, bootstrap'},
+    {label:'Python / R',       value:0.84, desc:'pandas, scikit-learn, ggplot2'},
+    {label:'Machine Learning', value:0.79, desc:'Régression, clustering, ACP'},
+    {label:'Visualisation',    value:0.81, desc:'Power BI, matplotlib, Streamlit'},
+    {label:'Dev Web',          value:0.73, desc:'Next.js, TypeScript, API REST'},
+    {label:'SIG & Terrain',    value:0.76, desc:'QGIS, KoboToolbox, SurveyToGo'},
+  ];
+  var N = skills.length;
+
+  // Build legend
+  var legend = document.getElementById('radarLegend');
+  if(legend && legend.children.length===0) {
+    var accent = getAccent();
+    skills.forEach(function(s,i){
+      var hue = i*(360/N);
+      var item = document.createElement('div'); item.className='radar-legend-item';
+      item.innerHTML = '<div class="radar-legend-dot" style="background:'+accent+';opacity:'+(0.5+s.value*0.5)+'"></div><span>'+s.label+' <strong style="color:'+accent+'">'+Math.round(s.value*100)+'%</strong></span>';
+      legend.appendChild(item);
+    });
+  }
+
+  // Tooltip state
+  if(!drawRadar._hover) drawRadar._hover = {idx:-1};
+
+  canvas.onmousemove = function(e) {
+    var rect = canvas.getBoundingClientRect();
+    var mx = e.clientX-rect.left, my = e.clientY-rect.top;
+    var found = -1;
+    for(var i=0;i<N;i++){
+      var angle=(i/N)*Math.PI*2-Math.PI/2;
+      var px=cx+Math.cos(angle)*R*skills[i].value;
+      var py=cy+Math.sin(angle)*R*skills[i].value;
+      if(Math.abs(mx-px)<18 && Math.abs(my-py)<18){found=i;break;}
+    }
+    if(found !== drawRadar._hover.idx) {
+      drawRadar._hover.idx = found;
+      cancelAnimationFrame(drawRadar._raf);
+      drawRadar._raf = requestAnimationFrame(function(){ renderRadar(1); });
+    }
+  };
+  canvas.onmouseleave = function(){ drawRadar._hover.idx=-1; cancelAnimationFrame(drawRadar._raf); drawRadar._raf=requestAnimationFrame(function(){ renderRadar(1); }); };
+
+  function renderRadar(ease) {
+    var accent = getAccent();
+    var rgb = hexToRgb(accent);
+    var r=rgb[0],g=rgb[1],b=rgb[2];
+    var textCol = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim()||'#ddeeff';
+    ctx.clearRect(0,0,W,H);
+
+    // Outer glow background
+    var bgGrad = ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.4);
+    bgGrad.addColorStop(0,`rgba(${r},${g},${b},0.06)`);
+    bgGrad.addColorStop(1,`rgba(${r},${g},${b},0)`);
+    ctx.beginPath(); ctx.arc(cx,cy,R*1.4,0,Math.PI*2);
+    ctx.fillStyle=bgGrad; ctx.fill();
+
+    // Grid rings
+    for(var lvl=1;lvl<=5;lvl++){
+      var rf=R*(lvl/5);
+      ctx.beginPath();
+      for(var i=0;i<=N;i++){
+        var ang=(i/N)*Math.PI*2-Math.PI/2;
+        var px=cx+Math.cos(ang)*rf, py=cy+Math.sin(ang)*rf;
+        if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      if(lvl===5){
+        ctx.strokeStyle=`rgba(${r},${g},${b},0.35)`; ctx.lineWidth=1.5;
+      } else {
+        ctx.strokeStyle=`rgba(${r},${g},${b},0.1)`; ctx.lineWidth=0.8;
+      }
+      ctx.stroke();
+
+      // Ring labels (20%, 40%...)
+      if(lvl<5){
+        ctx.fillStyle=`rgba(${r},${g},${b},0.35)`;
+        ctx.font=`${Math.max(9,W/42)}px Times New Roman`;
+        ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText((lvl*20)+'%', cx+4, cy-rf+2);
+      }
+    }
+
+    // Axes with gradient
+    for(var i=0;i<N;i++){
+      var ang=(i/N)*Math.PI*2-Math.PI/2;
+      var grad=ctx.createLinearGradient(cx,cy,cx+Math.cos(ang)*R,cy+Math.sin(ang)*R);
+      grad.addColorStop(0,`rgba(${r},${g},${b},0)`);
+      grad.addColorStop(1,`rgba(${r},${g},${b},0.3)`);
+      ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.lineTo(cx+Math.cos(ang)*R,cy+Math.sin(ang)*R);
+      ctx.strokeStyle=grad; ctx.lineWidth=1; ctx.stroke();
+    }
+
+    // Data shape — filled with gradient
+    ctx.beginPath();
+    for(var i=0;i<N;i++){
+      var ang=(i/N)*Math.PI*2-Math.PI/2;
+      var rv=R*skills[i].value*ease;
+      var px=cx+Math.cos(ang)*rv, py=cy+Math.sin(ang)*rv;
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    var fillGrad=ctx.createRadialGradient(cx,cy,0,cx,cy,R);
+    fillGrad.addColorStop(0,`rgba(${r},${g},${b},0.35)`);
+    fillGrad.addColorStop(1,`rgba(${r},${g},${b},0.08)`);
+    ctx.fillStyle=fillGrad; ctx.fill();
+    ctx.strokeStyle=`rgba(${r},${g},${b},0.9)`; ctx.lineWidth=2.5; ctx.stroke();
+
+    // Dots + glow
+    for(var i=0;i<N;i++){
+      var ang=(i/N)*Math.PI*2-Math.PI/2;
+      var rv=R*skills[i].value*ease;
+      var px=cx+Math.cos(ang)*rv, py=cy+Math.sin(ang)*rv;
+      var isHover=(drawRadar._hover.idx===i);
+      var dotR=isHover?8:5;
+
+      // Glow
+      var glowR=dotR*3;
+      var glow=ctx.createRadialGradient(px,py,0,px,py,glowR);
+      glow.addColorStop(0,`rgba(${r},${g},${b},${isHover?0.6:0.3})`);
+      glow.addColorStop(1,`rgba(${r},${g},${b},0)`);
+      ctx.beginPath(); ctx.arc(px,py,glowR,0,Math.PI*2);
+      ctx.fillStyle=glow; ctx.fill();
+
+      // Dot
+      ctx.beginPath(); ctx.arc(px,py,dotR,0,Math.PI*2);
+      ctx.fillStyle=isHover?'white':accent; ctx.fill();
+      ctx.strokeStyle=`rgba(${r},${g},${b},0.5)`; ctx.lineWidth=1.5; ctx.stroke();
+    }
+
+    // Labels
+    var fs = Math.max(10, W/38);
+    for(var i=0;i<N;i++){
+      var ang=(i/N)*Math.PI*2-Math.PI/2;
+      var lx=cx+Math.cos(ang)*LABEL_R, ly=cy+Math.sin(ang)*LABEL_R;
+      var isHover=(drawRadar._hover.idx===i);
+      ctx.font=`${isHover?'bold ':''}${fs}px Times New Roman`;
+      ctx.fillStyle=isHover?accent:textCol;
+      ctx.textAlign=lx>cx+8?'left':lx<cx-8?'right':'center';
+      ctx.textBaseline=ly<cy-8?'bottom':ly>cy+8?'top':'middle';
+      ctx.fillText(skills[i].label, lx, ly);
+    }
+
+    // Tooltip on hover
+    var hi=drawRadar._hover.idx;
+    if(hi>=0 && ease>=1){
+      var ang=(hi/N)*Math.PI*2-Math.PI/2;
+      var rv=R*skills[hi].value;
+      var px=cx+Math.cos(ang)*rv, py=cy+Math.sin(ang)*rv;
+      var txt=skills[hi].desc+' — '+Math.round(skills[hi].value*100)+'%';
+      var fs2=Math.max(10,W/40);
+      ctx.font=fs2+'px Times New Roman';
+      var tw=ctx.measureText(txt).width;
+      var tx=Math.max(4,Math.min(W-tw-12,px-tw/2));
+      var ty=py<cy?py+14:py-28;
+      ctx.fillStyle=`rgba(0,0,0,0.75)`;
+      roundRect(ctx,tx-6,ty-4,tw+12,fs2+10,6);
+      ctx.fill();
+      ctx.strokeStyle=`rgba(${r},${g},${b},0.6)`; ctx.lineWidth=1; ctx.stroke();
+      ctx.fillStyle='white'; ctx.textAlign='left'; ctx.textBaseline='top';
+      ctx.fillText(txt, tx, ty);
+    }
+  }
+
+  function roundRect(ctx,x,y,w,h,rad){
+    ctx.beginPath();ctx.moveTo(x+rad,y);ctx.lineTo(x+w-rad,y);
+    ctx.arcTo(x+w,y,x+w,y+rad,rad);ctx.lineTo(x+w,y+h-rad);
+    ctx.arcTo(x+w,y+h,x+w-rad,y+h,rad);ctx.lineTo(x+rad,y+h);
+    ctx.arcTo(x,y+h,x,y+h-rad,rad);ctx.lineTo(x,y+rad);
+    ctx.arcTo(x,y,x+rad,y,rad);ctx.closePath();
+  }
+
+  // Animate entrance
+  cancelAnimationFrame(drawRadar._raf);
+  drawRadar._raf = null;
+  var start = null;
+  function animate(ts){
+    if(!start) start=ts;
+    var p=Math.min((ts-start)/1400,1);
+    var ease=1-Math.pow(1-p,4); // quartic ease-out
+    renderRadar(ease);
+    if(p<1) drawRadar._raf=requestAnimationFrame(animate);
+  }
+  drawRadar._raf = requestAnimationFrame(animate);
+}
+
+/* ── MODE RECRUTEUR / TECHNIQUE ── */
+window.setMode = function(mode) {
+  document.querySelectorAll('.mode-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('.mode-btn[onclick*="'+mode+'"]').classList.add('active');
+  if(mode === 'recruteur') {
+    document.getElementById('modeRecruteur').style.display = 'block';
+    document.getElementById('modeTechnique').style.display = 'none';
+    setTimeout(drawRadar, 100);
+  } else {
+    document.getElementById('modeRecruteur').style.display = 'none';
+    document.getElementById('modeTechnique').style.display = 'block';
+  }
+};
+
+/* ── FIX THEME : live color update pour particules + radar ── */
+var _origApplyTheme = applyTheme;
+applyTheme = function(name) {
+  _origApplyTheme(name);
+  setTimeout(function(){
+    // Radar : vider la légende pour la reconstruire avec la nouvelle couleur
+    var legend = document.getElementById('radarLegend');
+    if(legend) legend.innerHTML = '';
+    if(drawRadar._hover) drawRadar._hover.idx = -1;
+    if(document.getElementById('about') && document.getElementById('about').classList.contains('active')) {
+      drawRadar();
+    }
+  }, 80);
+};
+
+/* ── INIT SUR SHOWPAGE ── */
+var _origShowPage = window.showPage;
+window.showPage = function(pid) {
+  _origShowPage(pid);
+  if(pid === 'home') {
+    
+  }
+  if(pid === 'about') {
+    setTimeout(function(){
+      var legend = document.getElementById('radarLegend');
+      if(legend) legend.innerHTML = '';
+      drawRadar();
+    }, 300);
+  }
+};
+
+/* ── RADAR RESIZE ── */
+window.addEventListener('resize', function(){
+  if(document.getElementById('about') && document.getElementById('about').classList.contains('active')) {
+    cancelAnimationFrame(drawRadar._raf);
+    setTimeout(drawRadar, 150);
+  }
+});
+
+/* ── INIT ACCUEIL ── */
+window.addEventListener('load', function(){
+  
+  // Image loading skeleton
+  var imgs = document.querySelectorAll('img');
+  imgs.forEach(function(img){
+    if(!img.complete) {
+      img.parentElement.classList.add('img-skeleton');
+      img.addEventListener('load', function(){ img.parentElement.classList.remove('img-skeleton'); });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
